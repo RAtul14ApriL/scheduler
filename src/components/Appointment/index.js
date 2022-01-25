@@ -19,6 +19,7 @@ export default function Appointment(props) {
   const DELETING = "DELETING";
   const CONFIRM = "CONFIRM";
   const ERROR = "ERROR";
+  const EDIT = "EDIT";
 
   const { mode, transition, back } = useVisualMode(
     interview ? SHOW : EMPTY
@@ -48,7 +49,7 @@ export default function Appointment(props) {
     <article className="appointment">
       <Header time={time} />
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
-      {mode === SHOW && <Show student={interview.student} interviewer={interview.interviewer} onDelete={() => transition(CONFIRM)} />}
+      {mode === SHOW && <Show student={interview.student} interviewer={interview.interviewer} onDelete={() => transition(CONFIRM)} onEdit={() => transition(EDIT)} />}
       {mode === CREATE && <Form interviewers={interviewers} onCancel={() => back(EMPTY)} onSave={save} />}
       {mode === SAVING && <Status message="Saving" />}
       {mode === DELETING && <Status message="Deleting" />}
@@ -58,7 +59,7 @@ export default function Appointment(props) {
         onConfirm={cancleAppointment}
         />}
       {mode === ERROR && <Error message="Something went wrong" onClose={() => back(SHOW)} /> }
-
+      {mode === EDIT && <Form student={interview.student} interviewer={interview.interviewer.id} interviewers={interviewers} onCancel={() => back(EMPTY)} onSave={save} />}
 
     </article>
   )
