@@ -5,7 +5,6 @@ import InterviewerListItem from "./InterviewerListItem";
 
 export default function InterviewerList(props) {
   const { interviewers, value, onChange } = props;
-  console.log("props at interviewerList:::", props);
   const parsedInterviews = interviewers.map((interviewer) => {
     return(
       <InterviewerListItem

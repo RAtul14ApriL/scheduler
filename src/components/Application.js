@@ -38,7 +38,6 @@ export default function Application(props) {
   appointments = getAppointmentsForDay(state, state.day);
   
   function bookInterview(id, interview) {
-    console.log("Application Line 41", id, interview);
     const appointment = {
       ...state.appointments[id],
       interview: {...interview}
@@ -47,15 +46,19 @@ export default function Application(props) {
       ...state.appointments,
       [id]: appointment
     };
-    setState({...state, appointments});
+    return axios.put(`${baseURL}/appointments/${id}`, appointment)
+    .then(response => {
+      setState({...state, appointments});
+    })
+    .catch(err => {
+      console.log('Error>> ', err);
+    })
   }
 
 
   const parsedAppointment = appointments.map(appointment => {
     const interview = getInterview(state, appointment.interview);
-    // console.log("interview at line 54:", interview);
     const interviewersForDay = getInterviewersForDay(state, state.day);
-    // console.log("interviewersForDay:::", interviewersForDay);
     return (
       <Appointment
       key={appointment.id}
