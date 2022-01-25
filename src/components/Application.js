@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import "components/Application.scss";
 import DayList from "./DayList";
 import Appointment from "components/Appointment";
@@ -38,19 +37,41 @@ export default function Application(props) {
 
   appointments = getAppointmentsForDay(state, state.day);
   
+  function bookInterview(id, interview) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: {...interview}
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    return axios.put(`${baseURL}/appointments/${id}`, appointment)
+    .then(response => {
+      setState({...state, appointments});
+    })
+    .catch(err => {
+      console.log('Error>> ', err);
+    })
+  }
+
+
   const parsedAppointment = appointments.map(appointment => {
     const interview = getInterview(state, appointment.interview);
-    const interviewers = getInterviewersForDay(state, state.day);
+    const interviewersForDay = getInterviewersForDay(state, state.day);
     return (
       <Appointment
       key={appointment.id}
       id={appointment.id}
       time={appointment.time}
       interview={interview}
-      interviewers={interviewers}
+      interviewers={interviewersForDay}
+      bookInterview={bookInterview}
        />
     );
   });
+
+  
 
   return (
     <main className="layout">
