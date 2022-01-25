@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import "components/Application.scss";
 import DayList from "./DayList";
 import Appointment from "components/Appointment";
@@ -38,19 +37,38 @@ export default function Application(props) {
 
   appointments = getAppointmentsForDay(state, state.day);
   
+  function bookInterview(id, interview) {
+    console.log("Application Line 41", id, interview);
+    const appointment = {
+      ...state.appointments[id],
+      interview: {...interview}
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    setState({...state, appointments});
+  }
+
+
   const parsedAppointment = appointments.map(appointment => {
     const interview = getInterview(state, appointment.interview);
-    const interviewers = getInterviewersForDay(state, state.day);
+    // console.log("interview at line 54:", interview);
+    const interviewersForDay = getInterviewersForDay(state, state.day);
+    // console.log("interviewersForDay:::", interviewersForDay);
     return (
       <Appointment
       key={appointment.id}
       id={appointment.id}
       time={appointment.time}
       interview={interview}
-      interviewers={interviewers}
+      interviewers={interviewersForDay}
+      bookInterview={bookInterview}
        />
     );
   });
+
+  
 
   return (
     <main className="layout">
