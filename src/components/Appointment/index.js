@@ -63,18 +63,18 @@ export default function Appointment(props) {
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
       {mode === SHOW && 
       <Show student={interview? interview.student : ""} interviewer={interview? interview.interviewer : null} onDelete={() => transition(CONFIRM)} onEdit={() => transition(EDIT)} />}
-      {mode === CREATE && <Form interviewers={interviewers} onCancel={() => back(EMPTY)} onSave={save} />}
+      {mode === CREATE && <Form interviewers={interviewers} onCancel={() => back()} onSave={save} />}
       {mode === SAVING && <Status message="Saving" />}
       {mode === DELETING && <Status message="Deleting" />}
       {mode === CONFIRM && <Confirm
         message="Do you want to cancel the appointment?"
-        onCancel={() => back(SHOW)}
+        onCancel={() => back()}
         onConfirm={cancleAppointment}
         />}
-      {mode === ERROR_DELETE && <Error message="Cannot cancel the appointment" onClose={() => back(SHOW)} /> }
-      {mode === ERROR_SAVE && <Error message="Cannot save the appointment" onClose={() => back(EMPTY)} /> }
+      {mode === ERROR_DELETE && <Error message="Cannot cancel the appointment" onClose={() => back()} /> }
+      {mode === ERROR_SAVE && <Error message="Cannot save the appointment" onClose={() => back()} /> }
       
-      {mode === EDIT && <Form student={interview.student} interviewer={interview.interviewer.id} interviewers={interviewers} onCancel={() => back(EMPTY)} onSave={save} />}
+      {mode === EDIT && <Form student={interview.student} interviewer={interview.interviewer.id} interviewers={interviewers} onCancel={() => back()} onSave={save} />}
 
     </article>
   )
