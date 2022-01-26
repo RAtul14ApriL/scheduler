@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import axios from 'axios';
-import DayListItem from "components/DayListItem";
 
 export default function useApplicationData(props) {
 
@@ -56,7 +55,6 @@ export default function useApplicationData(props) {
         setState({...state, days: state.days});
         updateSpots();
       })
-      .catch(err => err)
   }
 
   return { cancelInterview, bookInterview, setDay, state }

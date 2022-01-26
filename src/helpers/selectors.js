@@ -23,30 +23,13 @@ function getInterview(state, interview) {
 
 function getInterviewersForDay(state, day) {
   let interviewersArray = [];
-  for (let key of state.days) {
-    if (key.name === day) {
-      interviewersArray = [...key.interviewers];
+  for (let item of state.days) {
+    if (item.name === day) {
+      interviewersArray = [...item.interviewers];
     }
   }
   const interviewersForDay = interviewersArray.map((id) => state.interviewers[id]);
   return interviewersForDay;
 };
-
-// const getInterviewersForDay = (state, day) => {
-//   const interviewerIdForDay = [];
-//   const interviewerForDay = [];
-//   state.days.map(oneDay => {
-//     if (oneDay.name === day) {
-//       if (oneDay.interview === null) {
-//         return interviewerIdForDay;
-//       }
-//       interviewerIdForDay.push(...oneDay.interviewers);
-//     }
-//   });
-//   interviewerIdForDay.map(interviewer => {
-//     interviewerForDay.push(state.interviewers[interviewer]);
-//   });
-//   return interviewerForDay;
-// }
 
 module.exports = { getAppointmentsForDay, getInterview, getInterviewersForDay };
