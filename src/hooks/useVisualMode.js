@@ -9,10 +9,13 @@ export default function useVisualMode(initial) {
     if (replace === false) {
       history.push(newMode);
     }
+    if (history.length > 1) {
+      history.pop(history.slice(-1).toString());
+    }
   };
 
   const back = function () {
-    if(history.length === 1) {
+    if (history.length === 1) {
       setMode(history[0]);
     } else {
       history.pop();

@@ -60,7 +60,7 @@ export default function Application(props) {
    .then(response => {
     setState(...state);
    })
-  //  .catch((err) => err)
+   .catch((err) => err)
   }
 
 
