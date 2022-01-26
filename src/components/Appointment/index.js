@@ -18,8 +18,10 @@ export default function Appointment(props) {
   const SAVING = "SAVING";
   const DELETING = "DELETING";
   const CONFIRM = "CONFIRM";
-  const ERROR = "ERROR";
+  // const ERROR = "ERROR";
   const EDIT = "EDIT";
+  const ERROR_DELETE = "ERROR_DELETE";
+  const ERROR_SAVE = "ERROR_SAVE";
 
   const { mode, transition, back } = useVisualMode(
     interview ? SHOW : EMPTY
@@ -32,7 +34,13 @@ export default function Appointment(props) {
       interviewer
     };
     bookInterview(id, interview)
-      .then(() => transition(SHOW))
+      .then((response) => {
+        console.log(response);
+        transition(SHOW)
+      })
+      .catch(err => {
+        transition(ERROR_SAVE)
+      })
   }
   function cancleAppointment() {
     transition(DELETING);
@@ -41,7 +49,7 @@ export default function Appointment(props) {
       transition(EMPTY);
     })
     .catch(() => {
-      transition(ERROR);
+      transition(ERROR_DELETE);
     })
   }
 
@@ -49,7 +57,8 @@ export default function Appointment(props) {
     <article className="appointment">
       <Header time={time} />
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
-      {mode === SHOW && <Show student={interview.student} interviewer={interview.interviewer} onDelete={() => transition(CONFIRM)} onEdit={() => transition(EDIT)} />}
+      {mode === SHOW && 
+      <Show student={interview? interview.student : ""} interviewer={interview? interview.interviewer : null} onDelete={() => transition(CONFIRM)} onEdit={() => transition(EDIT)} />}
       {mode === CREATE && <Form interviewers={interviewers} onCancel={() => back(EMPTY)} onSave={save} />}
       {mode === SAVING && <Status message="Saving" />}
       {mode === DELETING && <Status message="Deleting" />}
@@ -58,7 +67,9 @@ export default function Appointment(props) {
         onCancel={() => back(SHOW)}
         onConfirm={cancleAppointment}
         />}
-      {mode === ERROR && <Error message="Something went wrong" onClose={() => back(SHOW)} /> }
+      {mode === ERROR_DELETE && <Error message="Cannot cancel the appointment" onClose={() => transition(SHOW)} /> }
+      {mode === ERROR_SAVE && <Error message="Cannot save the appointment" onClose={() => transition(EMPTY)} /> }
+      
       {mode === EDIT && <Form student={interview.student} interviewer={interview.interviewer.id} interviewers={interviewers} onCancel={() => back(EMPTY)} onSave={save} />}
 
     </article>
