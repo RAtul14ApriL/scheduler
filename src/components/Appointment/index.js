@@ -10,7 +10,7 @@ import Error from "./Error";
 import useVisualMode from "hooks/useVisualMode";
 
 export default function Appointment(props) {
-  const { id, time, interview, interviewers, bookInterview, cancelInterview } = props;
+  const { id, time, interview, interviewers, bookInterview, cancelInterview, updateSpots } = props;
 
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
@@ -28,21 +28,23 @@ export default function Appointment(props) {
   );
 
   function save(name, interviewer) {
-
-    transition(SAVING);
-
-    const interview = {
-      student: name,
-      interviewer
-    };
-
-    bookInterview(id, interview)
-    .then((response) => {
-      transition(SHOW, true)
-    })
-    .catch(err => {
-      transition(ERROR_SAVE, true)
-    })
+    if(name && interviewer){
+      transition(SAVING);
+  
+      const interview = {
+        student: name,
+        interviewer
+      };
+  
+      bookInterview(id, interview)
+      .then((response) => {
+        transition(SHOW, true)
+        updateSpots();
+      })
+      .catch(err => {
+        
+      })
+    }
   }
   function cancleAppointment() {
 
