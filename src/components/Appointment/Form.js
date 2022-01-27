@@ -11,6 +11,7 @@ export default function Form(props) {
 
   const reset = () => {
     setName("");
+    setError("");
     setInterviewerId(null);
   }
 
@@ -25,6 +26,7 @@ export default function Form(props) {
       return;
     }
     onSave(name, interviewerId);
+    setError("");
   } 
 
   return (
