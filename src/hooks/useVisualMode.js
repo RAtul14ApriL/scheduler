@@ -9,19 +9,15 @@ const useVisualMode = (initial) => {
     if (replace === true) {
       newHistory.pop();
     }
-
     newHistory.push(newMode);
     setHistory(newHistory);
   };
 
   const back = () => {
-
     if (history.length > 1) {
       const newHistory = [...history];
       newHistory.pop();
-
       setHistory(newHistory);
-
     }
   }
   const mode = history.slice(-1)[0];
