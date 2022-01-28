@@ -32,4 +32,8 @@ npm test
 npm run storybook
 ```
 ## Screenshots
-!["App page"](https://github.com/kalambayjp/midterm_marketplace/blob/master/screenshots/product_page.png)
+!["Default page"](https://github.com/RAtul14ApriL/scheduler/blob/master/screenshots/default.png)
+!["Booking_Interview"](https://github.com/RAtul14ApriL/scheduler/blob/master/screenshots/booking_interview.png)
+!["Filling up Interview Form"](https://github.com/RAtul14ApriL/scheduler/blob/master/screenshots/write_name_n_select_interviewer.png)
+!["Displaying Interview"](https://github.com/RAtul14ApriL/scheduler/blob/master/screenshots/displaying_interview.png)
+!["Confirmation before deleting"](https://github.com/RAtul14ApriL/scheduler/blob/master/screenshots/confirmation_before_delete.png)
