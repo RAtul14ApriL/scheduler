@@ -2,12 +2,12 @@ import React from "react";
 import "components/Application.scss";
 import DayList from "./DayList";
 import Appointment from "components/Appointment";
-import {getAppointmentsForDay, getInterview, getInterviewersForDay} from "helpers/selectors";
+import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
 import useApplicationData from "hooks/useApplicationData";
 
 export default function Application(props) {
 
-  const {cancelInterview, bookInterview, setDay, state, updateSpots} = useApplicationData();
+  const { cancelInterview, bookInterview, setDay, state, updateSpots } = useApplicationData();
 
   const appointments = getAppointmentsForDay(state, state.day);
 
@@ -16,15 +16,15 @@ export default function Application(props) {
     const interviewersForDay = getInterviewersForDay(state, state.day);
     return (
       <Appointment
-      key={appointment.id}
-      id={appointment.id}
-      time={appointment.time}
-      interview={interview}
-      interviewers={interviewersForDay}
-      bookInterview={bookInterview}
-      cancelInterview={cancelInterview}
-      updateSpots={updateSpots}
-       />
+        key={appointment.id}
+        id={appointment.id}
+        time={appointment.time}
+        interview={interview}
+        interviewers={interviewersForDay}
+        bookInterview={bookInterview}
+        cancelInterview={cancelInterview}
+        updateSpots={updateSpots}
+      />
     );
   });
 
@@ -38,7 +38,6 @@ export default function Application(props) {
         <nav className="sidebar__menu">
           <DayList
             days={state.days}
-            // spots={day.spots}
             value={state.day}
             onChange={setDay}
           />
