@@ -5,9 +5,14 @@ Scheduler is a modern client application using the React view library, created b
 
 This project is tested in different levels- i.e- static testing, unit testing, integration testing and end-to-end testing. Overall test coverage is 62%. All the core requirements have been covered.
 
+## Project URL
+https://github.com/RAtul14ApriL/scheduler
+
 ## Setup
 
-Install dependencies with `npm install`.
+Clone from the project URL.
+
+Then install dependencies with `npm install`.
 
 ## Running Webpack Development Server
 
