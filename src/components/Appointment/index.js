@@ -10,7 +10,7 @@ import Error from "./Error";
 import useVisualMode from "hooks/useVisualMode";
 
 export default function Appointment(props) {
-  const { id, time, interview, interviewers, bookInterview, cancelInterview, updateSpots } = props;
+  const { id, time, interview, interviewers, bookInterview, cancelInterview } = props;
 
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
@@ -37,11 +37,10 @@ export default function Appointment(props) {
   
       bookInterview(id, interview)
       .then((response) => {
-        transition(SHOW, true)
-        updateSpots();
+        transition(SHOW);
       })
       .catch(err => {
-        
+        transition(ERROR_SAVE, true)
       })
     }
   }

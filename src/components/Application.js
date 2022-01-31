@@ -48,6 +48,7 @@ export default function Application(props) {
       </section>
       <section className="schedule">
         {parsedAppointment}
+        <Appointment key="last" id="last" time="5pm" />
       </section>
     </main>
   );

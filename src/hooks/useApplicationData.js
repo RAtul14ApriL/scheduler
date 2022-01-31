@@ -24,7 +24,7 @@ export default function useApplicationData(props) {
       .catch((err) => {
         console.log('Error: ', err);
       })
-  }, [])
+  }, [getDays, getAppointments, getInterviewers])
 
   function bookInterview(id, interview) {
     const appointment = {
@@ -47,7 +47,6 @@ export default function useApplicationData(props) {
       .then(() => {
         setState(prev => ({ ...prev, appointments, days }));
       })
-      .catch(err => err);
   }
 
   function cancelInterview(id) {
