@@ -31,6 +31,25 @@ npm test
 ```sh
 npm run storybook
 ```
+
+## Running Database
+Please clone the repo https://github.com/RAtul14ApriL/scheduler-api and follow the instructions provided in README.md file to start the database api and the app work properly.
+
+## Dependencies
+"classnames": "^2.2.6",
+  + "normalize.css": "^8.0.1",
+  + "react": "^16.9.0",
+  + "react-dom": "^16.9.0",
+  + "react-scripts": "3.0.0"
+  + "body-parser": "^1.18.3",
+  + "cors": "^2.8.5",
+  + "dotenv": "^7.0.0",
+  + "express": "^4.16.4",
+  + "helmet": "^3.18.0",
+  + "pg": "^8.5.0",
+  + "socket.io": "^2.2.0",
+  + "ws": "^7.0.0"
+
 ## Screenshots
 !["Default page"](https://github.com/RAtul14ApriL/scheduler/blob/master/screenshots/default.png)
 !["Booking_Interview"](https://github.com/RAtul14ApriL/scheduler/blob/master/screenshots/booking_interview.png)
